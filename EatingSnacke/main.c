@@ -3,6 +3,8 @@
 #include <time.h>
 #include "snake.h"
 
+void SpawnFood(Game *game);
+
 void InitGame(Game *game)
 {
     srand((unsigned)time(NULL));
@@ -62,7 +64,15 @@ void InitGame(Game *game)
     game->snake.body[2].x = 12;
     game->snake.body[2].y = 14;
 
+    for(int i = 0;i < game->snake.length;i++)
+    {
+        int x = game->snake.body[i].x;
+        int y = game->snake.body[i].y;
+        game->map[y][x] = 3;
+    }
+
     // 4.生成第一个食物
+    SpawnFood(game);
 }
 
 void SpawnFood(Game *game)
@@ -85,6 +95,8 @@ void SpawnFood(Game *game)
 
 void DrawMap(const Game *game)
 {
+    printf("\033[H");
+
     for(int y = 0;y < MAP_WID;y++)
     {
         for(int x = 0;x < MAP_LEN;x++)
@@ -106,7 +118,15 @@ int main(int argc, char *argv[])
 {
     Game game;
     InitGame(&game);
-    DrawMap(&game);
+    
+    while(1)
+    {
+        system("cls");
+        DrawMap(&game);
+        _sleep(500);
+    }
+    
+
 
     return 0;
 }
