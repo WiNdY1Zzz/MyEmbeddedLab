@@ -1,8 +1,10 @@
-#ifndef __STUDENT_H
-#define __STUDENT_H
+#ifndef STUDENT_H
+#define STUDENT_H
 
-#define OK 0
-#define ERROR -1
+#include <stdio.h>
+#include <string.h>
+
+
 #define MAX_SIZE_STU 50  //定义最大学生数量
 #define MAX_SIZE_COUR 3  //定义最多存储的课程数目
 #define MAX_SIZE_TIMES 5  //定义最多存储该科目考试成绩的次数
@@ -24,5 +26,9 @@ typedef struct StuLNode
     CourseList list;  //存储成绩
     struct StuLNode *next;  //下一个学生
 }StuLNode,*StuList;
+
+void Menu(void);
+
+
 
 #endif
